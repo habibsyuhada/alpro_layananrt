@@ -4,6 +4,7 @@
   
   if($post['submit']){
     $username = $post['username'];
+    $level = $post['level'];
 
     $result = mysqli_query($mysqli, "SELECT * FROM user WHERE username = '$nik' and id != $id_user");
     if(mysqli_num_rows($result) > 0){
@@ -11,7 +12,7 @@
     }
 
     if(!@$toastr_error){
-      $result = mysqli_query($mysqli, "UPDATE user SET username='$username' WHERE id=$id_user");
+      $result = mysqli_query($mysqli, "UPDATE user SET username='$username', level='$level' WHERE id=$id_user");
   
       $toastr_success = 'Success: User Has Been Created!';
     }
@@ -44,6 +45,14 @@
         <div class="form-group">
           <label>NIK</label>
           <input type="text" class="form-control" name="nik" value="<?= $user['nik'] ?>" placeholder="Enter NIK" required readonly>
+        </div>
+        <div class="form-group">
+          <label>Level</label>
+          <select class="form-control" name="level" required>
+            <option>---</option>
+            <option value="RT" <?= ($user['level'] == 'RT' ? 'selected' : '') ?>>RT</option>
+            <option value="WARGA" <?= ($user['level'] == 'WARGA' ? 'selected' : '') ?>>WARGA</option>
+          </select>
         </div>
       </div>
       <div class="card-footer">

@@ -41,7 +41,8 @@
             <td><?= $masyarakat['kewarganegaraan'] ?></td>
             <td><?= $masyarakat['alamat'] ?></td>
             <td>
-              <a href="index.php?page=masyarakat_edit&id=<?= $masyarakat['id'] ?>" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
+              <a href="index.php?page=masyarakat_edit&id=<?= $masyarakat['id'] ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</a>
+              <a href="index.php?page=masyarakat_delete&id=<?= $masyarakat['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure to Delete This?')"><i class="fas fa-trash"></i> Delete</a>
             </td>
           </tr>
           <?php endwhile; ?>

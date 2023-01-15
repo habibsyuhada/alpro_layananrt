@@ -7,9 +7,10 @@
 
   if(mysqli_num_rows($result) > 0){
     $user = mysqli_fetch_array($result);
-    $_SESSION['id'] = $row['id'];
-    $_SESSION['username'] = $row['username'];
-    $_SESSION['name'] = $row['name'];
+    $_SESSION['id'] = $user['id'];
+    $_SESSION['username'] = $user['username'];
+    $_SESSION['name'] = $user['name'];
+    $_SESSION['level'] = $user['level'];
     header('Location: index.php');
   }
   else{

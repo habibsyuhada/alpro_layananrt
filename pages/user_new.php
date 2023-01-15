@@ -6,6 +6,7 @@
     $password = md5($post['password']);
     $name = $post['name'];
     $nik = $post['nik'];
+    $level = $post['level'];
 
     $result = mysqli_query($mysqli, "SELECT * FROM masyarakat WHERE nik = '$nik'");
     if(mysqli_num_rows($result) == 0){
@@ -23,7 +24,7 @@
     }
 
     if(!@$toastr_error){
-      $result = mysqli_query($mysqli, "INSERT INTO user(username,password,name,nik) VALUES('$username','$password','$name','$nik')");
+      $result = mysqli_query($mysqli, "INSERT INTO user(username,password,name,nik,level) VALUES('$username','$password','$name','$nik','$level')");
   
       $toastr_success = 'Success: User Has Been Created!';
     }
@@ -53,6 +54,14 @@
         <div class="form-group">
           <label>NIK</label>
           <input type="text" class="form-control" name="nik" placeholder="Enter NIK" required>
+        </div>
+        <div class="form-group">
+          <label>Level</label>
+          <select class="form-control" name="level" required>
+            <option>---</option>
+            <option value="RT">RT</option>
+            <option value="WARGA">WARGA</option>
+          </select>
         </div>
       </div>
       <div class="card-footer">

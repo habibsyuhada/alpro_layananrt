@@ -15,6 +15,7 @@
             <th>Username</th>
             <th>Name</th>
             <th>NIK</th>
+            <th>Level</th>
             <th></th>
           </tr>
         </thead>
@@ -24,8 +25,10 @@
             <td><?= $user['username'] ?></td>
             <td><?= $user['name'] ?></td>
             <td><?= $user['nik'] ?></td>
+            <td><?= $user['level'] ?></td>
             <td>
-              <a href="index.php?page=user_edit&id=<?= $user['id'] ?>" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
+              <a href="index.php?page=user_edit&id=<?= $user['id'] ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</a>
+              <a href="index.php?page=user_delete&id=<?= $user['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure to Delete This?')"><i class="fas fa-trash"></i> Delete</a>
             </td>
           </tr>
           <?php endwhile; ?>
