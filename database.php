@@ -1,6 +1,6 @@
 <?php
   $databaseHost = 'localhost';
-  $databaseName = 'alpro';
+  $databaseName = 'alpro_layananrt';
   $databaseUsername = 'root';
   $databasePassword = '';
   
