@@ -88,17 +88,22 @@
   $result = mysqli_query($mysqli, "SELECT * FROM user WHERE level = 'RT'");
   $rt = mysqli_fetch_array($result);
 
-  $result = mysqli_query($mysqli, "SELECT * FROM user WHERE level = 'WARGA'");
-  while($user = mysqli_fetch_array($result)) {
-    $form_data = [
-      "nik" => $value['nik'],
-      "alasan" => $value['alasan'],
-      "created_by" => $value['alasan'],
-      "created_date" => $value['alasan'],
-      "keterangan" => $value['alasan'],
-      "status" => $value['alasan'],
-      "approve_by" => $value['alasan'],
-      "approve_date" => $value['alasan'],
-    ];
+  $users = mysqli_query($mysqli, "SELECT * FROM user u join masyarakat m ON m.nik = u.nik WHERE level = 'WARGA'");
+  while($user = mysqli_fetch_array($users)) {
+    $result = mysqli_query($mysqli, "SELECT * FROM masyarakat WHERE no_kk = '".$user['no_kk']."'");
+
+    while($masyarakat = mysqli_fetch_array($result)) {
+      $form_data = [
+        "nik" => $masyarakat['nik'],
+        "alasan" => 'Sebagai Syarat Pembuatan KTP',
+        "created_by" => $user['id'],
+        "created_date" => date('Y-m-d', rand(strtotime("2022-12-01"), strtotime("2022-12-31"))),
+        "keterangan" => '-',
+        "status" => 'Permintaan',
+        "approve_by" => 0,
+        "approve_date" => NULL,
+      ];
+      $result = mysqli_query($mysqli, query_builder_insert('surat_pengantar', $form_data));
+    }
   }
 ?>
